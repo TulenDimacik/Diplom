@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ClothesShopDiplom.Models.Role>
+@{ ViewBag.Title = "Роли"; }
+<a asp-action="CreateRole">Добавить роль</a>
+<table class="table">
+    <tr><td>ID</td><td>Название</td></tr>
+    @foreach (var item in Model)
+    {
+<tr><td>@item.Id</td><td>@item.RoleName</td></tr>}
+</table>
