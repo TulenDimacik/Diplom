@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ClothesShopDiplom.Controllers
@@ -12,49 +14,39 @@ namespace ClothesShopDiplom.Controllers
         //хуйня для бд
         private ApplicationContext db;
 
-
         public HomeController(ApplicationContext applicationContext)
         {
             db = applicationContext;
         }
-        #region  Сотрудник
-        //получение данных из бд
-        public async Task<IActionResult> Index2()
-        {
-            return View(await db.Employees.ToListAsync());
-        }
-        //Ретурн Вьюшки
-        public IActionResult Create()
-        {
-            return View();
-        }
-        //Добавление данных получается
-        [HttpPost]
-        public async Task<IActionResult> Create(Employee employee)
-        {
-            db.Employees.Add(employee);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index2");
-        }
-        #endregion
-        #region Роль
-        public async Task<IActionResult> Index1()
-        {
-            return View(await db.Roles.ToListAsync());
-        }
-        public IActionResult CreateRole()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> CreateRole(Role role)
-        {
-            db.Roles.Add(role);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Login");
-        }
-        #endregion
 
+        [HttpPost]
+        public IActionResult Login(Employee employee)
+        {
+            //в скобочках то что мы передаем то есть вводим в поля
+            //Ищем логин в бд
+            var st = db.Employees.FirstOrDefault(p => p.Login == employee.Login);
+            if (st != null)
+            {
+                //подтверждаем пароль 
+                bool verify = BCrypt.Net.BCrypt.Verify(employee.Password, st.Password);
+                if (verify == true)
+                {
+                        return RedirectToAction("Index");
+                }
+                else
+                    return RedirectToAction("Create");
+            }
+             return View();
+            
+            /*
+                        users = db.Users.Where(p => EF.Functions.Like(p.Login, user.Login, user.Email) && EF.Functions.Like(p.Password, user.Password) && EF.Functions.Like(p.RolesId.ToString(), "2"));
+
+                        foreach (User user2 in users)
+                        {
+                            ff = user2.Id;
+                            login2 = true;
+                        }*/
+        }
         public IActionResult Index()
         {
             return View();
@@ -68,6 +60,7 @@ namespace ClothesShopDiplom.Controllers
             return View();
         }
 
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

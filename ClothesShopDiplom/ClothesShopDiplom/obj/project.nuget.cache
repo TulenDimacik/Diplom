@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "TODyb6Id9TPYBcsyFv2sJTve3npsEThwhPGVxPgVYsSesyPWQkUWE8KkW3ruYpjYR16hA7oqmDfCYVr211wTFA==",
+  "dgSpecHash": "uqAEc0rkr2pVM55pktUkThCtYyuRAQJj4hz9cC1rbJqfACtK5n0YELgWO0QTJvBlLb1gcDpkCedi5bhcODvDvg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Дмитрий\\Desktop\\Diplom\\ClothesShopDiplom\\ClothesShopDiplom\\ClothesShopDiplom.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Дмитрий\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\Дмитрий\\.nuget\\packages\\jquery.inputmask\\5.0.7\\jquery.inputmask.5.0.7.nupkg.sha512",
     "C:\\Users\\Дмитрий\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\Дмитрий\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\Дмитрий\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
