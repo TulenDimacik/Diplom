@@ -1,0 +1,11 @@
+﻿@model ClothesShopDiplom.Models.ProductType
+@{ ViewBag.Title = "Добавление вида одежды"; }
+<form asp-action="CreateProductType" asp-controller="ProductType">
+    <div class="form-group">
+        <label asp-for="ProductTypeName" class="control-label"></label>
+        <input type="text" asp-for="ProductTypeName" required pattern=".*\S+.*" title="Поле обязательно для заполнения" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-default" />
+    </div>
+</form>

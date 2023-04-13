@@ -1,0 +1,28 @@
+﻿@model ClothesShopDiplom.Models.Order
+@{ ViewBag.Title = "Оформление заказа"; }
+<form asp-action="confirmOrder" asp-controller="filemodel">
+
+    <div class="form-group">
+        <label asp-for="DeliveryAddress"></label>
+        <input placeholder="Улица Пушкина" asp- type="text" asp-for="DeliveryAddress" class="form-control" />
+        <span style="color:red" asp-validation-for="DeliveryAddress"></span>
+    </div>
+
+    @{
+        var today = DateTime.Today.AddDays(1).ToString("yyyy-MM-dd");
+    }
+    <div class="form-group">
+        <label asp-for="DeliveryDate" class="control-label"></label>
+        <input value="@today" min="@today"  type="date" asp-for="DeliveryDate" class="form-control" />
+      
+        <span style="color:red" asp-validation-for="DeliveryDate"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Получатель</label>
+        <p class="form-control">@ViewBag.UserName</p>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Оплатить" class="btn btn-default" />
+    </div>
+</form>

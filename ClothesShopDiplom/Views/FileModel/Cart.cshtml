@@ -1,0 +1,65 @@
+﻿
+    @model IEnumerable<ClothesShopDiplom.Models.Cart>
+    @{ ViewBag.Title = "Корзина"; }
+    <form asp-controller="filemodel">
+        <table class="table">
+            @{ int cikl = 0;
+                double totalprice = 0.0; }
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Товар</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Размер</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    cikl = 1;
+                    if (cikl == 1)
+                    {
+
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Product.ProductName)</td>
+        <td>@Html.DisplayFor(modelItem => item.Product.Price)</td>
+
+        <td>@item.Size</td>
+        <td>
+           
+                <input asp-action="Cart" asp-route-id="@item.Id" asp-route-act="dec" method="post" type="submit" value="-" width="8" height="8" style="font-size:10px"  class="btn btn-outline-info mr-2" />
+        
+            @item.ProductAmount
+            
+                <input asp-action="Cart" asp-route-id="@item.Id" asp-route-act="inc" method="post" type="submit" value="+" width="8" height="8" style="font-size:10px" class="btn btn-outline-info ml-2" />
+       
+
+        </td>
+        @*<td>
+                <form asp-controller="filemodel" asp-action="Cart" asp-route-id="@item.Id" asp-route-act="inc" method="post">
+                    <input type="submit" value="+" class="btn btn-outline-primary" />
+                </form>
+            </td>*@
+        <td>
+            
+                <button  asp-action="DeleteFromCart" asp-route-id="@item.Id" method="post" class="btn btn-outline-danger"  type="submit">
+                    Удалить
+                    @*<span class="visually-hidden">Dismiss</span>*@
+                </button>
+                @*<input type="submit" value="Удалить" class="btn btn-outline-primary rounded-circle p-2 lh-1" />*@
+          
+        </td>
+
+        @{totalprice += item.Product.Price * item.ProductAmount; }
+    </tr>}
+                }
+            </tbody>
+        </table>
+        <p style="color:red">@ViewBag.CountError</p>
+        <p>Итог: @totalprice</p>
+        @if (cikl == 1)
+        {
+<input asp-action="ConfirmOrder" method="get" type="submit" value="К оформлению" class="btn btn-outline-primary" />}
+
+</form>

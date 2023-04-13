@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ClothesShopDiplom.Models.Employee>
+@{ ViewBag.Title = "Все пользователи"; }
+<a asp-action="Create" asp-controller="employee">Добавить пользователя</a>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Отчество</th>
+            <th scope="col">Email</th>
+            <th scope="col">Логин</th>
+            <th scope="col">Роль</th>
+            <th scope="col">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>@item.Surname</td>
+        <td>@item.Name</td>
+        <td>@item.Patronymic</td>
+        <td>@item.Email</td>
+        <td>@item.Login</td>
+        <td>@Html.DisplayFor(modelItem => item.Role.RoleName)</td>
+
+        <td>
+            @if (User.Identity.Name != item.Login)
+            {
+        <a asp-action="Edit" asp-controller="employee" asp-route-id="@item.Id">Изменить</a>
+
+
+                            <form asp-controller="employee" asp-action="Delete" method="post" asp-route-id="@item.Id"><input type="submit" value="Удалить" class="btn btn-outline-danger" /></form>}
+        </td>
+   
+    </tr>}
+    </tbody>
+</table>

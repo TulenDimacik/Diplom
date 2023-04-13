@@ -1,0 +1,215 @@
+﻿@model IEnumerable<ClothesShopDiplom.Models.FileModel>
+@{
+    ViewData["Title"] = "Main Page";
+}
+
+
+
+
+
+
+
+<div class="album py-5 bg-body-tertiary">
+    <div >
+        <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach (var item in Model)
+            {
+                <div class="col-4 mb-5">
+                    <div class="card shadow-sm" style="width:310px; height:100%" >
+                        
+                            <img  class="bd-placeholder-img card-img-top"   style="width:308.5px;min-height:380px"  src="@Url.Content(item.Path)"/>
+                 
+                        <div class="card-body "  >
+                            
+                                <a  asp-action="Details" asp-route-id="@item.Id" class="h5">@item.Product.ProductName</a>
+                                <p class="card-text">@item.Product.Description</p>
+                                <div class="d-flex justify-content-between align-items-end">
+
+                                    <div class="btn-group">
+                                        <form asp-action="AddToCart" method="post" asp-controller="filemodel" asp-route-id="@item.Id">
+                                            <input name="choosedSize" type="submit" style="width:30px; height:25px; font-size: 10px" class="btn btn-sm btn-outline-secondary rounded-circle" value="XS" />
+                                            <input name="choosedSize" type="submit" style="width:30px; height:25px;font-size: 10px" class="btn btn-sm btn-outline-secondary rounded-circle" value="S" />
+                                            <input name="choosedSize" type="submit" style="width:30px; height:25px;font-size: 10px" class="btn btn-sm btn-outline-secondary rounded-circle" value="M" />
+                                            <input name="choosedSize" type="submit" style="width:30px; height:25px;font-size: 10px" class="btn btn-sm btn-outline-secondary rounded-circle" value="L" />
+                                            <input name="choosedSize" type="submit" style="width:30px; height:25px;font-size: 10px" class="btn btn-sm btn-outline-secondary rounded-circle" value="XL" />
+                                        </form>
+                                    </div>
+                                    <small class="text-body-secondary ml-3">@item.Product.Price₽</small>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            }
+                </div>
+            </div>
+    </div>
+
+
+
+
+
+
+
+
+
+@*<style>
+        body {
+            background: #222D32;
+            font-family: 'Roboto', sans-serif;
+            margin: 0px;
+        }
+        div{
+            display:flex;
+            margin: 0px;
+        }
+
+        .login-box {
+            margin-top: 75px;
+            height: auto;
+            background: #1A2226;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .login-key {
+            height: 100px;
+            font-size: 80px;
+            line-height: 100px;
+            background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-title {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ECF0F5;
+        }
+
+        .login-form {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        input[type=text] {
+            background-color: #1A2226;
+            border: none;
+            border-bottom: 2px solid #0DB8DE;
+            border-top: 0px;
+            border-radius: 0px;
+            font-weight: bold;
+            outline: 0;
+            margin-bottom: 20px;
+            padding-left: 0px;
+            color: #ECF0F5;
+        }
+
+        input[type=password] {
+            background-color: #1A2226;
+            border: none;
+            border-bottom: 2px solid #0DB8DE;
+            border-top: 0px;
+            border-radius: 0px;
+            font-weight: bold;
+            outline: 0;
+            padding-left: 0px;
+            margin-bottom: 20px;
+            color: #ECF0F5;
+        }
+
+        .form-group {
+            margin-bottom: 40px;
+            outline: 0px;
+        }
+
+        .form-control:focus {
+            border-color: inherit;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-bottom: 2px solid #0DB8DE;
+            outline: 0;
+            background-color: #1A2226;
+            color: #ECF0F5;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0;
+        }
+
+        label {
+            margin-bottom: 0px;
+        }
+
+        .form-control-label {
+            font-size: 10px;
+            color: #6C6C6C;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline-primary {
+            border-color: #0DB8DE;
+            color: #0DB8DE;
+            border-radius: 0px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #0DB8DE;
+                right: 0px;
+            }
+
+        .login-btm {
+            float: right;
+        }
+
+        .login-button {
+            padding-right: 0px;
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        .login-text {
+            text-align: left;
+            padding-left: 0px;
+            color: #A2A4A4;
+        }
+
+        .loginbttm {
+            padding: 0px;
+        }
+    </style>*@
+@*<table class="table">
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            <p><img height="250" width="150" src="@Url.Content(item.Path)"></p>
+            <p>@item.Product.ProductName</p>
+        </td>
+    </tr>
+    }
+    </table>*@
+@*@foreach (var f in Model)
+    {
+    <tr>
+        <td>@f.ProductId</td>
+            <td>@f.Product</td>
+        <td>
+
+            <p><img src="@Url.Content(f.Path)"></p>
+        </td>
+
+        <td>
+            <form asp-controller="FileModel" asp-action="DeleteFile" method="post" asp-route-id="@f.Id">
+                <input type="submit" value="Удалить" class="btn btn-outline-primary" />
+            </form>
+        </td>
+    </tr>}*@

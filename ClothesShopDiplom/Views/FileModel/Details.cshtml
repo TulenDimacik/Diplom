@@ -1,0 +1,119 @@
+﻿
+<style>
+    .container {
+        all:unset
+       /* margin: 0 0 0 0;
+        width:100vw;*/
+    }
+    footer{
+        display:none
+    }
+   
+   
+</style>
+@model IEnumerable<ClothesShopDiplom.Models.FileModel>
+@{
+    ViewData["Title"] = "Main Page";
+}
+@{
+    int cycle = 0;
+    string material = "";
+    string type = "";
+    string color = "";
+}
+
+<div class="row no-gutters" style="height:60vh">
+
+    @foreach (var item in Model)
+    {
+        @if (cycle == 0)
+        {
+            <div class="col-6">
+                <img style="width:100%; height:100%" src="@Url.Content(item.Path)" />
+            </div>
+
+
+            <div class="col-6 pl-5">
+                <div class="h1"> @item.Product.ProductName</div><br />
+                <div class="h2"> @item.Product.Price₽</div><br />
+                <div class="h4"> @item.Product.Description</div>
+                <br />
+                <div class="h4">Выберите размер</div>
+                <form asp-controller="filemodel" asp-action="AddToCart" method="post" asp-route-id="@item.Id" asp-route-size="size">
+                    <div>
+
+                        <input style="display:none" name="choosedSize" type="radio" value="XS" class="btn-check " id="option1" is autocomplete="off" />
+                        <label onclick="changeLabelBackground(this)" class="btn btn-sm btn-outline-secondary rounded-circle mr-2 " style="width:45px; height:45px; font-size: 20px" for="option1">XS</label>
+
+                        <input style="display:none" name="choosedSize" type="radio" value="S" class="btn-check " id="option2" autocomplete="off" />
+                        <label onclick="changeLabelBackground(this)" class="btn btn-sm btn-outline-secondary rounded-circle mr-2 " style="width:45px; height:45px; font-size: 20px" for="option2">S</label>
+
+                        <input style="display:none" name="choosedSize" type="radio" value="M" class="btn-check " id="option3" autocomplete="off" />
+                        <label onclick="changeLabelBackground(this)"class="btn btn-sm btn-outline-secondary rounded-circle mr-2 " style="width:45px; height:45px; font-size: 20px" for="option3">M</label>
+
+                        <input style="display:none" name="choosedSize" type="radio" value="L" class="btn-check " id="option4" autocomplete="off" />
+                        <label onclick="changeLabelBackground(this)"class="btn btn-sm btn-outline-secondary rounded-circle mr-2 " style="width:45px; height:45px; font-size: 20px" for="option4">L</label>
+
+                        <input style="display:none" name="choosedSize" type="radio" value="XL" class="btn-check " id="option5" autocomplete="off" />
+                        <label onclick="changeLabelBackground(this)"class="btn btn-sm btn-outline-secondary rounded-circle mr-2 " style="width:45px; height:45px; font-size: 20px" for="option5">XL</label>
+                        <br />
+                        @*<input name="choosedSize" type="radio" style="width:45px; height:45px; font-size: 20px" class="btn btn-sm btn-outline-secondary rounded-circle mr-3" value="S" />
+                <input name="choosedSize" type="radio" style="width:45px; height:45px; font-size: 20px" class="btn btn-sm btn-outline-secondary rounded-circle mr-3" value="M" />
+                <input name="choosedSize" type="radio" style="width:45px; height:45px; font-size: 20px" class="btn btn-sm btn-outline-secondary rounded-circle mr-3" value="L" />
+                <input name="choosedSize" type="radio" style="width:45px; height:45px; font-size: 20px" class="btn btn-sm btn-outline-secondary rounded-circle mr-3" value="XL" /><br />*@
+
+                    </div>
+
+
+                    <input type="submit" style="font-size:20px" value="В корзину" class="btn btn-outline-success" />
+                </form>
+            </div>
+            cycle = 1;
+        }
+
+        else
+        {
+
+            <div class="col-6">
+                <img style="width:100%; height:100%" src="@Url.Content(item.Path)" />
+            </div>
+
+        }
+
+    }
+    <div class="col-12" style="min-width:100%; background-color:antiquewhite">
+        <div class="p-5 text-left bg-body-tertiary">
+            <div class="container py-5">
+                @foreach (var item in Model)
+                {
+                    @if (cycle != 2)
+                    {
+                    <div class="h4">Характеристики</div>
+                    <div class="h5">Материал</div>
+                    <p> @item.Product.Material.MaterialName</p>
+                    <div class="h5">Цвет</div>
+                    <p> @item.Product.ProductColor</p>
+                    <div class="h5">Вид товара</div>
+                    <p> @item.Product.ProductType.ProductTypeName</p>
+                        }
+                    cycle = 2;
+                }
+            </div>
+                
+                <h4></h4>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<script>
+    function changeLabelBackground(label) {
+        label.style.backgroundColor = '#6c757d'
+         label.style.color = 'white'; // change the background color to red
+    }
+</script>
+
+

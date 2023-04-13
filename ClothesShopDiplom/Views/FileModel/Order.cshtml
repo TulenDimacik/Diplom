@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ClothesShopDiplom.Models.Order>
+@{ ViewBag.Title = "Заказы"; }
+<table class="table">
+    <tr><td>ID</td><td>Дата доставки</td><td>Статус</td><td>UsID</td><td>EmId</td></tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Id</td>
+    <td>@item.DeliveryDate</td>
+    <td>@item.DeliveryStatus</td>
+    <td>@item.UserId</td>
+    <td>@item.EmployeeId</td>
+    
+</tr>}
+</table>

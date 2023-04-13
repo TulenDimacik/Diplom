@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ClothesShopDiplom.Models.Size>
+@{ ViewBag.Title = "Размеры"; }
+<a asp-action="CreateSize">Добавить размер</a>
+<table class="table">
+    <tr><td>Название</td><td>Действия</td></tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Id</td>
+    <td>@item.SizeName</td>
+    <td>
+        <form asp-controller="size" asp-action="Delete" method="post" asp-route-id="@item.Id">
+            <input type="submit" value="Удалить" class="btn btn-outline-primary" />
+        </form>
+    </td>
+</tr>
+}
+</table>

@@ -1,0 +1,12 @@
+﻿@model ClothesShopDiplom.Models.Size
+@{ ViewBag.Title = "Добавление размера"; }
+<form asp-action="createsize" asp-controller="size">
+    <div class="form-group">
+        <label asp-for="SizeName" class="control-label"></label>
+        <input type="text" asp-for="SizeName" required pattern=".*\S+.*" title="Поле обязательно для заполнения" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-default" />
+    </div>
+</form>

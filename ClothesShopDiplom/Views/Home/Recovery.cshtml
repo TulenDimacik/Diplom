@@ -1,0 +1,15 @@
+﻿@model ClothesShopDiplom.Models.Recovery
+
+@{ ViewBag.Title = "Восстановление пароля"; }
+<h1>Восстановление пароля</h1>
+<form asp-action="Recovery" asp-controller="Home">
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input placeholder="Введите почту"  type="text" asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Отправить" asp-route="email" class="btn btn-default" />
+        <span style="color:red">@ViewBag.RecoveryError</span>
+    </div>
+</form>

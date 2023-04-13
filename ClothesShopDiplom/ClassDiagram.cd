@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClothesShopDiplom.Models.ApplicationContext">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEEAACAQAAAAAAQAAAAACCAACiAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\ApplicationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.Auth">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAACAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\Auth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.Cart">
+    <Position X="2" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAECAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Cart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.Employee">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKACIAACAAAAAAEAAAAAQABAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.ErrorViewModel">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.FileModel">
+    <Position X="3.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAIAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FileModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.Material">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Material.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.Order">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAABAABCAABAgACAAAAAAAAAAAAAACEAA=</HashCode>
+      <FileName>Models\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.Product">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAQAQAgAACAAAQAAAAAAAAAAAAAAAAAAACIAAA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.ProductSize">
+    <Position X="2" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAEAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProductSize.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.ProductType">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProductType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.Recovery">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAAAAAAAAgAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Recovery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.ResetPassword">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAFAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ResetPassword.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.Role">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.Sales">
+    <Position X="5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAACAAAAAAABAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Sales.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Models.User">
+    <Position X="5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAACAAAAAAAAAAAAQABAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Controllers.EmployeeController">
+    <Position X="11" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAgAAAAQAAABAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\EmployeeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Controllers.FileModelController">
+    <Position X="8" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAEABABARAAIAAAQAAAAAAAAAAABAAAEAAAAAACA=</HashCode>
+      <FileName>Controllers\FileModelController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Controllers.HomeController">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAABAQCQAAAAAAAAQAAAAAAQAAAAEQAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Controllers.MaterialController">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAQAAAAAAAAAAAAAAEAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Controllers\MaterialController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Controllers.ProductController">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAQAAAAAAAAAAAAAAEAgABAAAAgAAAAAAg=</HashCode>
+      <FileName>Controllers\ProductController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Controllers.ProductTypeController">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQBAAAAAAAAAAAAAEBAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ProductTypeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Controllers.RoleController">
+    <Position X="3.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAEAAAAAAAEAAAAQAAA=</HashCode>
+      <FileName>Controllers\RoleController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClothesShopDiplom.Controllers.UserController">
+    <Position X="12.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAQAAABAAAAAAAAAAAAAEACAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
