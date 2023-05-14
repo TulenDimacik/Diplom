@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ClothesShopDiplom.Models.Material>
+@{ ViewBag.Title = "Материалы"; }
+<link rel="stylesheet" href="~/css/MyStyle.css" />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-2">
+            <h2 style="margin-top:10vh" class="heading-section">Управление Материалами</h2>
+        </div>
+    </div>
+</div>
+
+<a asp-action="CreateMaterial">Добавить материал</a>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th style="text-align:left" scope="col" class="col-2">ID</th>
+            <th style="text-align:center" scope="col" class="col-8">Название</th>
+            <th style="text-align:right" scope="col" class="col-2">Действия</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td style="text-align:left">@item.Id</td>
+    <td style="text-align:center">@item.MaterialName</td>
+    <td style="text-align:right">
+        <form asp-controller="material" asp-action="Delete" method="post" asp-route-id="@item.Id">
+            <input type="submit" value="Удалить" class="btn btn-outline-danger" />
+        </form>
+    </td>
+</tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,134 @@
+﻿@model ClothesShopDiplom.Models.Product
+@{ ViewBag.Title = "Добавление товара"; }
+<style>
+    /* .my-dropdown {
+        font-size: 16px;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        color: #333;
+        background-color: #fff;
+        box-shadow: none;
+    }
+
+        .my-dropdown:hover {
+            border-color: #999;
+        }
+
+        .my-dropdown:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 4px rgba(0,102,204,.4);
+        }*/
+    select {
+        margin-bottom: 1em;
+        padding: .25em;
+        border: 0;
+        border-bottom: 2px solid currentcolor;
+        font-weight: bold;
+        letter-spacing: .15em;
+        border-radius: 0;
+    }
+</style>
+<link rel="stylesheet" href="~/css/MyStyle.css" />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-2">
+            <h2 style="margin-top:10vh" class="heading-section">Добавление товара</h2>
+        </div>
+    </div>
+</div>
+<form asp-action="ProductCreate" asp-controller="product" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label asp-for="ProductName"></label>
+        <input asp- type="text" asp-for="ProductName" class="form-control" />
+        <span style="color:red" asp-validation-for="ProductName"></span>
+        <span style="color:red">@ViewBag.ProductUnique</span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProductColor" class="control-label"></label>
+        <input type="text" asp-for="ProductColor" class="form-control" />
+        <span style="color:red" asp-validation-for="ProductColor"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input required type="number" asp-for="Price" class="form-control" />
+        <span style="color:red" asp-validation-for="Price"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Gender" class="control-label"></label>
+        <input type="checkbox" asp-for="Gender" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span style="color:red" asp-validation-for="Description"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductTypeId" class="control-label"></label><br />
+        @Html.DropDownList("ProductTypeId", ViewBag.ProductTypes as SelectList)
+    </div>
+    <div class="form-group">
+        <label asp-for="MaterialId" class="control-label"></label><br />
+        @Html.DropDownList("MaterialId", ViewBag.Materials as SelectList, htmlAttributes: new { @class = "select" })
+    </div>
+
+    @*<input type="file" name="uploadedFile" /><br>
+        <input type="file" name="uploadedFile" /><br>
+        <input type="file" name="uploadedFile" /><br>
+        <input type="file" name="uploadedFile" /><br>*@
+    
+    <button id="uploadbutton" type="button">Добавить фото</button>
+    <div id="container"></div>
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-default" />
+    </div>
+</form>
+
+<script>
+    var container = document.getElementById('container');
+    var countOfButton = 0;
+    document.getElementById("uploadbutton").addEventListener("click", function () {
+        if (countOfButton < 5) {
+            var newdiv = document.createElement('div');
+            var deleteBtn = document.createElement('button');
+            deleteBtn.type = 'button';
+            deleteBtn.textContent = 'x'; // установить текст кнопки
+            deleteBtn.id = countOfButton.toString();
+            deleteBtn.className = countOfButton.toString();
+            deleteBtn.addEventListener('click', function () {
+                deletePhoto(deleteBtn.id);
+            });
+            var newInput = document.createElement('input');
+            newInput.name = "uploadedFile";
+            newInput.type = 'file';
+            newInput.accept = '.png, .jpg, .jpeg, .svg, .webp';
+            newInput.id = countOfButton.toString();
+            newInput.style = 'margin-right: 5vw';
+            newInput.style = 'margin-top: 1vh';
+            newInput.className = 'custom-btn btn-16 inputPhoto';
+            newdiv.style = 'display: flex';
+            newdiv.className = 'photo';
+            newdiv.appendChild(newInput);
+            newdiv.appendChild(deleteBtn);
+            container.appendChild(newdiv);
+            countOfButton++;
+        } else {
+            alert("Достигнуто максимальное кол-во фото");
+        }
+    });
+    function deletePhoto(id) {
+        if (countOfButton >= 1) {
+            var element = document.getElementsByClassName(id)[0];
+            var imgButton = document.getElementById(id);
+            imgButton.remove();
+            element.remove();
+            countOfButton--;
+        } else {
+        }
+    }
+</script>

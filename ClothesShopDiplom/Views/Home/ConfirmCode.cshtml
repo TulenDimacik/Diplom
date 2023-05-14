@@ -1,0 +1,15 @@
+﻿@{ ViewBag.Title = "Ввод кода"; }
+<link rel="stylesheet" href="~/css/MyStyle.css">
+<h1 class="titletext3" >Ввод кода</h1>
+<form asp-action="ConfirmCode" asp-controller="Home">
+
+    <div class="form-group">
+        <label>Введите код</label>
+        <input placeholder="Введите код" name="code" type="text" class="form-control" />
+        <span style="color:red">@ViewBag.ConfirmError</span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-default" />
+    </div>
+</form>

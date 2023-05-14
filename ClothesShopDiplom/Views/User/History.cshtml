@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ClothesShopDiplom.Models.History>
+
+@{ ViewBag.Title = "История заказов"; }
+
+<style>
+    .container {
+        all: unset;
+    }
+  header{
+      position:absolute;
+  }
+
+</style>
+@{ int? order = 0;
+    int count = 0;
+    double totalprice = 0.0;
+    int? product = 0;
+}
+<link rel="stylesheet" href="~/css/MyStyle.css" />
+<div class="container">
+    <div class="row m-0 p-0 justify-content-center">
+        <div style="margin-top:13vh"  class="mr-0 pl-0 justify-content-start col-2 ">
+            <a class="ml-2" asp-area="" asp-controller="User" asp-action="History">Мои покупки</a><br />
+            <a class="ml-2" asp-area="" asp-controller="User" asp-action="Profile">Личные данные</a><br />
+            <a class="ml-2" asp-action="ResetPassword" asp-controller="Home">Сброс пароля</a><br />
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="logout">Выход</a>
+        </div>
+        <div style="margin-top:3vh" class=" mb-3 pl-0 col-10 justify-content-center">
+            <h2 style="margin-top:10vh" class="heading-section mb-5 ">История заказов</h2>
+            <table width="100%" style="border:none; border-width: 0px; border-color:transparent; border-spacing: 100px;">
+                @*<tr><td>ID</td><td>Дата доставки</td><td>Статус</td><td>UsID</td><td>EmId</td></tr>*@
+
+                @foreach (var item in Model)
+                {
+                    @if (order != item.Cart.OrderId)
+                    {
+                        if (order != 0)
+                        {
+                            <tr><td><b>Товаров: @count, на сумму: @totalprice</b></td></tr>
+                            <tr style="height:1vh;"></tr>
+                            <tr style="height:1vh; border-top:solid; border-width:1px; border-color: #d8d8d8;"></tr>
+                        }
+                        {
+                            count = 0;
+                            totalprice = 0.0;
+                        }
+                        <tr><td><h3 style="font-weight:600">Заказ №@item.Cart.OrderId</h3></td> </tr>
+                    }
+                    <tr>
+                        <td scope="col" class="col-1 p-0">
+                            <a asp-action="Details" asp-controller="FileModel" asp-route-id="@item.Cart.ProductId"><img class="bd-placeholder-img card-img" style="width: 30vh; min-height: 30vh;" src="@Url.Content(item.FileModel.Path)" /></a>
+                        </td>
+
+                        <td style="vertical-align:top" scope="col" class="col-9 p-1">
+                            <h2> @Html.DisplayFor(modelItem => item.Cart.Product.ProductName)</h2><br />
+                            <p style="font-size:2vh">Размер: @Html.DisplayFor(modelItem => item.Cart.Size)</p>  
+                            <p style="font-size:2vh">Количество: @Html.DisplayFor(modelItem => item.Cart.ProductAmount)</p> 
+                           <p style="font-size:2vh">Стоимость: @Html.DisplayFor(modelItem => item.Cart.Product.Price) P</p> 
+                        </td>
+                        @*<td>@Html.DisplayFor(modelItem => item.Cart.Size)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cart.ProductAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cart.Product.Price)</td>*@
+
+                    </tr>
+                    <tr style="height:2vh"></tr>
+                    {
+                        totalprice += item.Cart.Product.Price * item.Cart.ProductAmount;
+
+                        count += item.Cart.ProductAmount;
+                        product += 1;
+                    }
+                    @if (product == Model.Count())
+                    {
+                        <tr class="mb-2"><td><b>Товаров: @count, на сумму: @totalprice</b></td></tr>
+                    }
+
+                    { order = item.Cart.OrderId; }
+
+
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

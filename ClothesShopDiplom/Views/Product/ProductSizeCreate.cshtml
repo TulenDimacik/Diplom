@@ -1,0 +1,18 @@
+﻿@model ClothesShopDiplom.Models.ProductSize
+@{ ViewBag.Title = "Добавление размера товару"; }
+<form asp-action="ProductSizeCreate" asp-controller="product" >
+
+   
+    <div class="form-group">
+        <label asp-for="ProductId" class="control-label"></label><br />
+        @Html.DropDownList("ProductId", ViewBag.Product as SelectList)
+    </div>
+    <div class="form-group">
+        <label asp-for="SizeId" class="control-label"></label><br />
+        @Html.DropDownList("SizeId", ViewBag.Size as SelectList)
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-default" />
+    </div>
+</form>

@@ -1,0 +1,292 @@
+﻿@model ClothesShopDiplom.Models.User
+    <style>
+        .group {
+            position: relative;
+            margin-bottom: 45px;
+        }
+
+        input:not(#no-style) {
+            font-size: 18px;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            width: 300px;
+            border: none;
+            border-bottom: 1px solid #000000;
+            background-color: transparent;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        /* LABEL ======================================= */
+        label {
+            color: #000000;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 10px;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+
+        /* active state */
+        .group.has-value label,
+        input:focus ~ label {
+            top: -20px;
+            font-size: 14px;
+            color: #000000;
+        }
+
+        /* BOTTOM BARS ================================= */
+        .bar {
+            position: relative;
+            display: block;
+            width: 300px;
+        }
+
+            .bar:before,
+            .bar:after {
+                content: "";
+                height: 2px;
+                width: 0;
+                bottom: 1px;
+                position: absolute;
+                background: #000000;
+                transition: 0.2s ease all;
+                -moz-transition: 0.2s ease all;
+                -webkit-transition: 0.2s ease all;
+            }
+
+            .bar:before {
+                left: 50%;
+            }
+
+            .bar:after {
+                right: 50%;
+            }
+
+        /* active state */
+        input:focus ~ .bar:before,
+        input:focus ~ .bar:after {
+            width: 50%;
+        }
+
+        /* HIGHLIGHTER ================================== */
+        .highlight {
+            position: absolute;
+            height: 60%;
+            width: 100px;
+            top: 25%;
+            left: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* active state */
+        input:focus ~ .highlight {
+            -webkit-animation: inputHighlighter 0.3s ease;
+            -moz-animation: inputHighlighter 0.3s ease;
+            animation: inputHighlighter 0.3s ease;
+        }
+
+        .container {
+            all: unset;
+        }
+
+      /*  .blur-image {
+            filter: blur(10px);
+        }
+
+        footer {
+            display: none
+        }
+*/
+
+        .button-28 {
+            
+            background-color: transparent;
+            border: 2px solid #1A1A1A;
+            border-radius: 15px;
+            box-sizing: border-box;
+            color: #000000;
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 600;
+            line-height: normal;
+            margin: 0;
+            min-height: 60px;
+            min-width: 0;
+            outline: none;
+            text-align: center;
+            text-decoration: none;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: 100%;
+            will-change: transform;
+        }
+
+            .button-28:disabled {
+                pointer-events: none;
+            }
+
+            .button-28:hover {
+                color: #fff;
+                background-color: #1A1A1A;
+                box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+                transform: translateY(-2px);
+            }
+
+            .button-28:active {
+                box-shadow: none;
+                transform: translateY(0);
+            }
+    </style>
+<link rel="stylesheet" href="~/css/MyStyle.css" />
+<div class="container">
+    <div class="row m-0 p-0 justify-content-center">
+        <div class=" mb-3 pl-0 justify-content-start col-5">
+            <h4 style="margin-top:13vh" class="ml-2"><b>Здравствуйте,</b><br/>@Model.Name!</h4>
+            
+            <a class="ml-2" asp-area="" asp-controller="User" asp-action="History">Мои покупки</a><br/>
+            <a class="ml-2" asp-area="" asp-controller="User" asp-action="Profile">Личные данные</a><br/>
+            <a class="ml-2" asp-action="ResetPassword" asp-controller="Home">Сброс пароля</a><br/>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="logout">Выход</a>
+        </div>
+        <div style="margin-top:3vh" class=" mb-3 pl-0 col-7">
+            <h2 style="margin-top:10vh" class="heading-section mb-5">Регистрация</h2>
+            <form class="row  m-0 p-0" asp-action="edit" asp-controller="User" asp-route-id="@Model.Id">
+                <div class="m-0 p-0" style=" background-color:rgba(255, 255, 255,0.1);">
+                    <div class="group">
+                        <input type="text" asp-for="Surname" />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Фамилия</label>
+                        <span style="color:red; font-size:14px" asp-validation-for="Surname"></span>
+                    </div>
+
+                    <div class="group">
+                        <input type="text" asp-for="Name" />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Имя</label>
+                        <span style="color:red; font-size:14px" asp-validation-for="Name"></span>
+                    </div>
+
+                    <div class="group">
+                        <input type="text" asp-for="Patronymic" />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Отчество</label>
+                        <span style="color:red; font-size:14px" asp-validation-for="Patronymic"></span>
+                    </div>
+                    <div class="group">
+                        <input type="text" asp-for="Email" />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Email</label>
+                        <span style="color:red; width: 300px; font-size:14px" asp-validation-for="Email"></span>
+                    </div>
+
+                    <div class="group">
+                        <input type="text" asp-for="Login" />
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Логин</label>
+                        <span style="color:red;  font-size:14px; white-space:pre-line " asp-validation-for="Login"></span>
+                    </div>
+
+                    <div hidden="hidden" class="form-group">
+                        <label asp-for="Password" class="control-label">Пароль</label>
+                        <input type="text" asp-for="Password" class="form-control" />
+                    </div>
+
+                    <div>
+                        <input type="submit" id="no-style" value="Сохранить" class="button-28" />
+                    </div>
+                  
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const inputs = document.querySelectorAll('.group input');
+    window.onload = function () {
+
+        inputs.forEach(input => {
+            if (input.value == "") {
+                input.parentNode.classList.remove('has-value');
+                console.log("Пусто");
+            } else {
+                input.parentNode.classList.add('has-value');
+                console.log("Не пусто");
+            }
+        });
+
+    }
+
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            if (input.value.trim() !== '') {
+                input.parentNode.classList.add('has-value');
+            } else {
+                input.parentNode.classList.remove('has-value');
+            }
+        });
+    });
+
+
+</script>
+@*<form asp-action="edit" asp-controller="user" asp-route-id="@Model.Id">
+    <div class="form-group">
+        <label asp-for="Surname" class="control-label"></label>
+        <input placeholder="Иванов" asp- type="text" asp-for="Surname" class="form-control" />
+        <span style="color:red" asp-validation-for="Surname"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input placeholder="Иван" type="text" asp-for="Name" class="form-control" />
+        <span style="color:red" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Patronymic" class="control-label"></label>
+        <input type="text" asp-for="Patronymic" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input type="text" asp-for="Email" class="form-control" />
+        <span style="color:red" asp-validation-for="Email"></span>
+        <span style="color:red;width: 300px; font-size:14px">@ViewBag.EmailError</span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Login" class="control-label"></label>
+        <input type="text" asp-for="Login" class="form-control" />
+        <span style="color:red" asp-validation-for="Login"></span>
+        <span style="color:red;width: 300px; font-size:14px">@ViewBag.LoginError</span>
+    </div>
+
+    <p>
+        <input type="submit" value="Сохранить" />
+    </p>
+
+    <a asp-action="ResetPassword" asp-controller="Home">Сбросить пароль</a>
+
+
+    <div hidden="hidden" class="form-group">
+        <label asp-for="Password" class="control-label">Пароль</label>
+        <input type="text" asp-for="Password" class="form-control" />
+    </div>
+
+</form>*@

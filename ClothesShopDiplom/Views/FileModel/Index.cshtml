@@ -1,0 +1,163 @@
+﻿
+@model PagedList.IPagedList<ClothesShopDiplom.Models.FileModel>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewData["Title"] = "Main Page";
+}
+<link rel="stylesheet" href="~/css/MyStyle.css" />
+
+
+<style>
+    :root {
+        --index: calc(1vw + 1vh);
+    }
+
+    .price {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: calc(var(--index) * 0.5);
+    }
+
+
+    .card {
+        transition: all 0.2s ease-in-out; /* добавляем плавный переход при изменении стилей */
+        margin: 0px 5px 10px 5px /* устанавливаем минимальную ширину карты */
+    }
+
+    footer {
+        display: none
+    }
+
+    .container {
+        all: unset
+        /* margin: 0 0 0 0;
+        width:100vw;*/
+    }
+    /*.card:hover {
+        transform: scale(1.1, 1.1);*/ /* увеличиваем карту на 10% по обеим осям */
+    /*}*/
+
+    .truncate {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+
+    header {
+        position: fixed;
+        z-index: 4;
+        width: 100vw;
+        background-color: transparent;
+    }
+
+    /*   .card:hover .truncate {
+        white-space: normal;
+        overflow: visible;
+        width: 100%;
+    }*/
+    .btn-outline-secondary:hover {
+        background-color: #f3f3f3;
+        color: black;
+    }
+</style>
+
+<div class="album py-5 bg-body-tertiary">
+    <div>
+        <div id="sidePanel">
+            @await Html.PartialAsync("_SideBar")
+        </div>
+
+        <div class="row no-gutters">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-3">
+                    <div class="card shadow-sm" style="width: 24vw;">
+                        <a asp-action="Details" asp-route-id="@item.ProductId"><img class="bd-placeholder-img card-img" style="width: 100%; min-height: 100%;" src="@Url.Content(item.Path)" /></a>
+
+                        <div class="card-body">
+                            <a asp-action="Details" asp-route-id="@item.ProductId" class="h5">@item.Product.ProductName</a>
+                            <div style="padding:0px 0px 5px 0px; " class="card-text truncate mt-1">
+                                @item.Product.Description
+                            </div>
+                            <div class="d-flex justify-content-between m-0 align-items-end">
+                                <div class="btn-group align-items-end">
+                                    <form class="m-0" asp-action="AddToCart" method="post" asp-controller="filemodel" asp-route-id="@item.Id">
+                                        <input name="choosedSize" type="submit" style="width:30px; height:25px; font-size: 10px; border-radius:0px; border-color:transparent" class="btn btn-sm btn-outline-secondary rounded-circle align-items-end" value="XS" />
+                                        <input name="choosedSize" type="submit" style="width:30px; height:25px;font-size: 10px; border-radius:0px; border-color:transparent" class="btn btn-sm btn-outline-secondary rounded-circle align-bottom" value="S" />
+                                        <input name="choosedSize" type="submit" style="width:30px; height:25px;font-size: 10px; border-radius:0px; border-color:transparent" class="btn btn-sm btn-outline-secondary rounded-circle" value="M" />
+                                        <input name="choosedSize" type="submit" style="width:30px; height:25px;font-size: 10px; border-radius:0px; border-color:transparent" class="btn btn-sm btn-outline-secondary rounded-circle" value="L" />
+                                        <input name="choosedSize" type="submit" style="width:30px; height:25px;font-size: 10px; border-radius:0px; border-color:transparent" class="btn btn-sm btn-outline-secondary rounded-circle" value="XL" />
+                                    </form>
+                                </div>
+                                <small class="text-body-secondary ml-3 price " id="price">@item.Product.Price</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <p class="ml-1">Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount</p>
+       
+       
+
+        @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions { DisplayLinkToFirstPage = true, DisplayLinkToLastPage = true })*@
+        @*@Html.PagedList.(Model, page => Url.Action("Index", new { page }))*@
+    @if (Model.PageCount != 1)
+    {
+        <div class="pagination">
+        @if (Model.PageNumber == 1)
+        {
+            <a class="ml-1 mr-1" href="@Url.Action("Index", new { page = Model.PageNumber })">Предыдущая</a>
+        }
+        else
+        {
+            <a class="ml-1 mr-1" href="@Url.Action("Index", new { page = Model.PageNumber - 1 })">Предыдущая</a>
+        }
+
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            if (i == 1 || i == Model.PageCount)
+            {
+
+                <a href="@Url.Action("Index", new { page = i })">@i&nbsp;</a>
+            }
+        }
+        @if (Model.PageNumber == Model.PageCount)
+        {
+            <a  href="@Url.Action("Index", new { page = Model.PageNumber })">Следущая</a>
+        }
+        else
+        {
+            <a  href="@Url.Action("Index", new { page = Model.PageNumber + 1 })">Следущая</a>
+        }
+    </div>
+    }
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        $('.price').each(function () {
+            let ammount = $(this);
+            let value = Number(ammount.text());
+            ammount.text(value.toLocaleString() + ' Р');
+        });
+    });
+
+    var obj = document.getElementById("sidebar-toggle");
+    var over = document.getElementById("overlay");
+
+    obj.addEventListener("mouseover", function () {
+
+        over.style.display = "block";
+
+    });
+
+
+</script>
+
+

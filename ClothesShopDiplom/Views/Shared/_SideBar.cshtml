@@ -1,0 +1,336 @@
+﻿<link rel="stylesheet" href="~/css/MyStyle.css" />
+<style>
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        z-index: 999;
+        overflow-x: hidden;
+        transition: width 0.5s;
+        background-color: white;
+    }
+
+    .sidebar-toggle {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 20px;
+        cursor: pointer;
+    }
+
+        .sidebar-toggle span {
+            display: block;
+            height: 2px;
+            width: 25px;
+            margin-bottom: 5px;
+            background-color: black;
+        }
+
+    .sidebar-content {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: calc(100vw / 3);
+        padding: 20px;
+    }
+
+    .sidebar:hover {
+        width: calc(100vw / 3);
+    }
+
+        .sidebar:hover ~ .overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: opacity 0.5s ease-in-out;
+        z-index: 998;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .no-wrap {
+        white-space: nowrap;
+    }
+
+    .highText:hover {
+        color: red;
+        cursor: pointer;
+    }
+
+   #accessories,
+   #basicClothes,
+   #clothes,
+   #homeClothes,
+   #shoes,
+   #sportClothes,
+   #upClothes{display:none;}
+
+    a{
+        color:black;
+        text-decoration:none;
+        display:block;
+        margin-bottom:1vh;
+        font-size:2vh;
+    }
+        a:hover {
+            text-decoration: none;
+            color: black;
+        }
+</style>
+
+<div class="sidebar">
+
+    <div class="row ">
+        <div id="sidebar-toggle" class="sidebar-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    
+    <div class="row no-wrap">
+
+        <div class="col-6 ml-1 sidebar-content">
+            <div class="mt-2">
+                <a class="highText" asp-action="Index" name="gender" asp-route-gender="Мужское" asp-controller="FileModel" style="padding-right: 5px;display:inline-block; font-size:60px">Мужское</a>
+                <a asp-action="Index" name="gender" asp-route-gender="Женское" asp-controller="FileModel" class="highText" style="padding-left: 5px;display:inline-block;font-size:60px">Женское</a>
+                <a asp-action="Index" asp-controller="FileModel" class="highText" style="padding-left: 5px;display:inline-block;font-size:60px">Все товары</a>
+            </div>
+            <p class="highText">ОДЕЖДА</p>
+            <p class="highText">ВЕРХНЯЯ ОДЕЖДА</p>
+            <p class="highText">ДОМАШНЯЯ ОДЕЖДА</p>
+            <p class="highText">СПОРТ</p>
+            <p class="highText">БАЗОВАЯ ОДЕЖДА</p>
+            <p class="highText">Обувь</p>
+            <p class="highText">АКСЕССУАРЫ</p>
+        </div>
+        @if (ViewBag.Gender == "Мужское" || ViewBag.Gender == null)
+        {
+            <div class="col-5" style="margin-top:15vh">
+                <div id="clothes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Брюки">Брюки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Джинсы">Джинсы</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Лонгсливы">Лонгсливы</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Майки">Майки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Нижнее белье">Нижнее белье</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Носки">Носки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Рубашки">Рубашки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Свитеры">Свитеры</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Худи">Худи</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Свитшоты">Свитшоты</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Футболки">Футболки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Шорты">Шорты</a>
+                </div>
+                <div id="upClothes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Куртки">Куртки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Жакеты">Жакеты</a>
+                </div>
+                <div id="homeClothes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Домашние костюмы">Домашние костюмы</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Пижамы">Пижамы</a>
+                </div>
+                <div id="sportClothes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Спортивные брюки">Спортивные брюки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Спортивные майки">Спортивные майки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Спортивные толстовки">Спортивные толстовки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Спортивные футболки">Спортивные футболки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Спортивные шорты">Спортивные шорты</a>
+                </div>
+                <div id="basicClothes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Брюки">Брюки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Майки">Майки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Толстовки">Толстовки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Футболки">Футболки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Шорты">Шорты</a>
+                </div>
+                <div id="shoes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Кроссовки">Кроссовки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Кеды">Кеды</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Шлепанцы">Шлепанцы</a>
+                </div>
+                <div id="accessories">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Головные уборы">Головные уборы</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Портфели">Портфели</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-5" style="margin-top:15vh">
+                <div id="clothes">
+
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Брюки">Брюки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Юбки">Юбки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Боди">Боди</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Джинсы">Джинсы</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Лонгсливы">Лонгсливы</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Майки">Майки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Топы">Топы</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Нижнее белье">Нижнее белье</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Носки">Носки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Рубашки">Рубашки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Свитеры">Свитеры</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Худи">Худи</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Свитшоты">Свитшоты</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Футболки">Футболки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Шорты">Шорты</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Купальники">Купальники</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Комбинезоны">Комбинезоны</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Легинсы">Легинсы</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Платья">Платья</a>
+
+                </div>
+                <div id="upClothes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Куртки">Куртки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Жакеты">Жакеты</a>
+                </div>
+                <div id="homeClothes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Домашние костюмы">Домашние костюмы</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Пижамы">Пижамы</a>
+                </div>
+                <div id="sportClothes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Спортивные брюки">Спортивные брюки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Спортивные майки">Спортивные майки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Спортивные толстовки">Спортивные толстовки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Спортивные футболки">Спортивные футболки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Спортивные шорты">Спортивные шорты</a>
+                </div>
+                <div id="basicClothes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Брюки">Брюки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Майки">Майки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Толстовки">Толстовки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Футболки">Футболки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Шорты">Шорты</a>
+                </div>
+                <div id="shoes">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Кроссовки">Кроссовки</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Кеды">Кеды</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Шлепанцы">Шлепанцы</a>
+                </div>
+                <div id="accessories">
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Головные уборы">Головные уборы</a>
+                    <a name="category" asp-action="Index" asp-controller="FileModel"  asp-route-category="Сумки">Сумки</a>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+<div id="overlay" class="overlay"></div>
+<script>
+    //document.addEventListener('DOMContentLoaded', () => {
+        //$('.col-5').each(function () {
+        //    let categories = $(this);
+        //    categories.css("display", "none");
+        //});
+    //});
+    //const clothes = document.getElementById("clothes");
+
+    //// Добавляем обработчик события на наведение мыши на слово "ОДЕЖДА"
+    //document.querySelector(".highText:nth-child(1)").addEventListener("mouseover", function () {
+    //    // Отображаем div с id "clothes"
+    //    console.log("fff");
+    //    clothes.style.display = "block";
+    //    // Скрываем все div, кроме div с id "clothes"
+    
+    //});
+
+
+
+    const clothes = document.getElementById("clothes");
+    const clothes1 = document.getElementById("upClothes");
+    const clothes2 = document.getElementById("homeClothes");
+    const clothes3 = document.getElementById("sportClothes");
+    const clothes4 = document.getElementById("basicClothes");
+    const clothes5 = document.getElementById("accessories");
+    const clothes6 = document.getElementById("shoes");
+
+    const clothesLink = document.querySelector("p.highText:nth-of-type(1)");
+    const clothesLink1 = document.querySelector("p.highText:nth-of-type(2)");
+    const clothesLink2 = document.querySelector("p.highText:nth-of-type(3)");
+    const clothesLink3 = document.querySelector("p.highText:nth-of-type(4)");
+    const clothesLink4 = document.querySelector("p.highText:nth-of-type(5)");
+    const clothesLink5 = document.querySelector("p.highText:nth-of-type(6)");
+    const clothesLink6 = document.querySelector("p.highText:nth-of-type(7)");
+
+    clothesLink.addEventListener("mouseover", function () {
+        clothes.style.display = "block";
+        clothes1.style.display = "none";
+        clothes2.style.display = "none";
+        clothes3.style.display = "none";
+        clothes4.style.display = "none";
+        clothes5.style.display = "none";
+        clothes6.style.display = "none";
+    });
+
+    clothesLink1.addEventListener("mouseover", function () {
+        clothes1.style.display = "block";
+        clothes.style.display = "none";
+        clothes2.style.display = "none";
+        clothes3.style.display = "none";
+        clothes4.style.display = "none";
+        clothes5.style.display = "none";
+        clothes6.style.display = "none";
+    });
+
+    clothesLink2.addEventListener("mouseover", function () {
+        clothes2.style.display = "block";
+        clothes1.style.display = "none";
+        clothes.style.display = "none";
+        clothes3.style.display = "none";
+        clothes4.style.display = "none";
+        clothes5.style.display = "none";
+        clothes6.style.display = "none";
+    });
+
+    clothesLink3.addEventListener("mouseover", function () {
+        clothes3.style.display = "block";
+        clothes1.style.display = "none";
+        clothes2.style.display = "none";
+        clothes.style.display = "none";
+        clothes4.style.display = "none";
+        clothes5.style.display = "none";
+        clothes6.style.display = "none";
+    });
+
+    clothesLink4.addEventListener("mouseover", function () {
+        clothes4.style.display = "block";
+        clothes1.style.display = "none";
+        clothes2.style.display = "none";
+        clothes3.style.display = "none";
+        clothes.style.display = "none";
+        clothes5.style.display = "none";
+        clothes6.style.display = "none";
+    });
+
+    clothesLink5.addEventListener("mouseover", function () {
+        clothes6.style.display = "block";
+        clothes1.style.display = "none";
+        clothes2.style.display = "none";
+        clothes3.style.display = "none";
+        clothes.style.display = "none";
+        clothes4.style.display = "none";
+        clothes5.style.display = "none";
+    });
+
+    clothesLink6.addEventListener("mouseover", function () {
+        clothes6.style.display = "none";
+        clothes1.style.display = "none";
+        clothes2.style.display = "none";
+        clothes3.style.display = "none";
+        clothes.style.display = "none";
+        clothes4.style.display = "none";
+        clothes5.style.display = "block";
+    });
+</script>

@@ -1,0 +1,182 @@
+﻿<link rel="stylesheet" href="~/css/MyStyle.css" />
+<style>
+    .container {
+        all: unset;
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        /* margin: 0 0 0 0;
+        width:100vw;*/
+    }
+    footer{
+        display:none
+    }
+    .btn-outline-secondary:hover{
+        background-color:#d9d9d9;
+        color:#000000;
+    }
+    header {
+        position: fixed;
+        z-index: 4;
+        width: 100vw;
+        background-color: transparent;
+    
+    }
+    body {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+      
+    }
+    main {
+        all: unset;
+        padding-bottom: 0px;
+    }
+</style>
+@model IEnumerable<ClothesShopDiplom.Models.FileModel>
+@{
+    ViewData["Title"] = "Подробнее";
+}
+@{
+    int cycle = 0;
+    //string material = "";
+    //string type = "";
+    //string color = "";
+}
+
+<div class="row no-gutters m-0 p-0" style="">
+
+    @foreach (var item in Model)
+    {
+        @if (cycle == 0)
+        {
+            <div class="col-6 m-0 p-0 " style="width:100%; height:100%;object-fit: cover;">
+                <img style="width:100%; height:100%;object-fit: cover;" src="@Url.Content(item.Path)" />
+            </div>
+
+
+            <div class="col-6 m-0 pl-5">
+                <div style="margin-top:10vh" class="h1"> @item.Product.ProductName</div><br />
+                <div class="h2 price" id="price"> @item.Product.Price</div><br />
+                <div class="h4"> @item.Product.Description</div>
+                <br />
+                <div class="h4">Выберите размер</div>
+                <form asp-controller="filemodel" asp-action="AddToCart" method="post" asp-route-id="@item.Id" asp-route-size="size">
+                    <div id="rbdiv" class="rbdiv">
+
+                        <input style="display:none" name="choosedSize" type="radio" value="XS" class="btn-check" id="option1" is autocomplete="off" />
+                        <label onclick="changeLabelBackground(this)" class="btn btn-sm btn-outline-secondary rounded-circle mr-2 " style="width:45px; height:45px; font-size: 20px;border-radius:0px; border-color:transparent" for="option1; ">XS</label>
+
+                        <input style="display:none" name="choosedSize" type="radio" value="S" class="btn-check" id="option2" autocomplete="off" />
+                        <label onclick="changeLabelBackground(this)" class="btn btn-sm btn-outline-secondary rounded-circle mr-2 " style="width:45px; height:45px; font-size: 20px;border-radius:0px; border-color:transparent" for="option2">S</label>
+
+                        <input style="display:none" name="choosedSize" type="radio" value="M" class="btn-check" id="option3" autocomplete="off" />
+                        <label onclick="changeLabelBackground(this)" class="btn btn-sm btn-outline-secondary rounded-circle mr-2 " style="width:45px; height:45px; font-size: 20px;border-radius:0px; border-color:transparent" for="option3">M</label>
+
+                        <input style="display:none" name="choosedSize" type="radio" value="L" class="btn-check" id="option4" autocomplete="off" />
+                        <label onclick="changeLabelBackground(this)" class="btn btn-sm btn-outline-secondary rounded-circle mr-2 " style="width:45px; height:45px; font-size: 20px;border-radius:0px; border-color:transparent" for="option4">L</label>
+
+                        <input style="display:none" name="choosedSize" type="radio" value="XL" class="btn-check" id="option5" autocomplete="off" />
+                        <label onclick="changeLabelBackground(this)"  class="btn btn-sm btn-outline-secondary rounded-circle mr-2 " style="width:45px; height:45px; font-size: 20px;border-radius:0px; border-color:transparent" for="option5">XL</label>
+                        <br />
+                 
+                    </div>
+
+
+                    <input type="submit" style="font-size:20px" value="В корзину" class="btn btn-outline-success" />
+                </form>
+            </div>
+            cycle = 1;
+        }
+
+        else
+        {
+
+            <div class="col-6">
+                <img style="width:100%; height:100%" src="@Url.Content(item.Path)" />
+            </div>
+
+        }
+
+    }
+    <div class="col-12 p-0 m-0" style="min-width:100%; background-color:antiquewhite">
+        <div class="p-5 text-left bg-body-tertiary">
+            <div class="container py-5">
+                @foreach (var item in Model)
+                {
+                    @if (cycle != 2)
+                    {
+                    <div class="h4">Характеристики</div>
+                    <div class="h5">Материал</div>
+                    <p> @item.Product.Material.MaterialName</p>
+                    <div class="h5">Цвет</div>
+                    <p> @item.Product.ProductColor</p>
+                    <div class="h5">Вид товара</div>
+                    <p> @item.Product.ProductType.ProductTypeName</p>
+                        }
+                    cycle = 2;
+                }
+            </div>
+                
+                <h4></h4>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<script>
+    function changeLabelBackground(label) {
+        
+        $('.rbdiv').each(function () {
+            let radio = $(this).find('.btn-outline-secondary');
+            radio.css('background-color', '#fff');
+            radio.css('color', '#6c757d');
+  
+        });
+            label.style.backgroundColor = '#6c757d'
+            label.style.color = 'white';
+       
+        // change the background color to red
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        $('.price').each(function () {
+            let ammount = $(this);
+            let value = Number(ammount.text());
+            ammount.text(value.toLocaleString() + ' Р');
+        });
+    });
+
+
+
+
+
+    //const profileButton = document.getElementById('profile');
+    //profileButton.style.backgroundColor = '#eaabb5';
+    //const authButton = document.getElementById('auth');
+    //const deleteProfileButton = document.getElementById('deleteProfile');
+    //profileButton.addEventListener('click', function (event) {
+    //    profileButton.style.backgroundColor = '#eaabb5';
+    //    authButton.style.backgroundColor = '#fff';
+    //    deleteProfileButton.style.backgroundColor = '#fff';
+    
+       
+    //    event.preventDefault();
+    //});
+    //authButton.addEventListener('click', function (event) {
+    //    profileButton.style.backgroundColor = '#fff';
+    //    authButton.style.backgroundColor = '#eaabb5';
+    //    deleteProfileButton.style.backgroundColor = '#fff';
+       
+    //    event.preventDefault();
+    //});
+    //deleteProfileButton.addEventListener('click', function (event) {
+    //    profileButton.style.backgroundColor = '#fff';
+    //    authButton.style.backgroundColor = '#fff';
+    //    deleteProfileButton.style.backgroundColor = '#eaabb5';
+       
+    //    event.preventDefault();
+    //});
+</script>
+
+

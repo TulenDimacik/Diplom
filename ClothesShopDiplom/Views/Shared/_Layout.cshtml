@@ -1,0 +1,159 @@
+﻿<style>
+   
+ 
+    input.transparent-input {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #000000; /* замените #ccc на нужный цвет */
+        outline: none;
+    }
+    ::-webkit-input-placeholder { /* для Chrome, Firefox, Safari, Opera */
+        color: #000;
+    }
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ClothesShopDiplom</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/MyStyle.css" />
+
+</head>
+
+<body>
+    <header  style=" width: 100vw; display: flex; position:fixed; justify-content: flex-end; ">
+        <nav style="background-color: transparent;  " class="navbar navbar-expand-sm navbar-toggleable-sm mb-3">
+            <div style="background-color: transparent;display:flex; align-items:center;" >
+                @*<a class="navbar-brand" asp-area="" asp-controller="filemodel" asp-action="Index">BrandMe</a>*@
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse ">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                            @if (User.IsInRole("Администратор"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="logout">Выйти</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Index2">Сотрудники</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index1">Роли</a>
+                                </li>
+                            }
+
+                            @if (User.IsInRole("Товаровед"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="logout">Выйти</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="ProductView">Товар</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="ProductType" asp-action="ProductTypeView">Вид товара</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Material" asp-action="MaterialView">Материал</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Оператор"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="logout">Выйти</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="FileModel" asp-action="Order">Заказы</a>
+                                </li>
+                            }
+
+                            @if (User.IsInRole("Пользователь"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Profile">
+                                        <img width="5" height="5" style="max-height:2vh; max-width:2vh; width:100%; height:100%" src="~/Images/account.png" />
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="FileModel" asp-action="Cart">
+                                        <img width="5" height="5" style="max-height:2vh; max-width:2vh; width:100%; height:100%" src="~/Images/cart.png" />
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <form asp-controller="filemodel" asp-action="Index">
+
+                                        <div style="display: flex; align-items: center;">
+                                            <img width="5" height="5" style="max-width: 2vw; height: 2vh;" src="~/Images/search.png" />
+                                            <input name="query" id="no-style" class="transparent-input" placeholder="Поиск" type="text" aria-label="Search" />
+                                        </div>
+                                    </form>
+                                </li>
+
+                            }
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <div>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">
+                                        <img width="5" height="5" style="max-height:2vh; max-width:2vh; width:100%; height:100%" src="~/Images/account.png" />
+
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+
+                                <a class="nav-link text-dark" asp-area="" asp-controller="FileModel" asp-action="Cart">
+                                    <img width="5" height="5" style="max-height:2vh; max-width:2vh; width:100%; height:100%" src="~/Images/cart.png" />
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-controller="filemodel" asp-action="Index">
+
+                                    <div style="display: flex; align-items: center;">
+                                        <img width="5" height="5" style="max-width: 2vw; height: 2vh;" src="~/Images/search.png" />
+                                        <input name="query" id="no-style" class="transparent-input" placeholder="Поиск" type="text" aria-label="Search" />
+                                    </div>
+                                </form>
+                            </li>
+                            @*<li class="nav-item">
+                <div>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Create">Зарегистрироваться</a>
+                </div>
+            </li>*@
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - ClothesShopDiplom - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ClothesShopDiplom.Models.FileModel>
+@{ ViewData["Title"] = "Добавление файла"; }
+<h3>Выберите файл для загрузки</h3>
+<form id="forma" asp-action="AddFile" asp-controller="FileModel" method="post" enctype="multipart/form-data">
+    <input id="uploadbutton" type="file" name="uploadedFile" /><br>
+    <input type="file" name="uploadedFile" /><br>
+    <input type="file" name="uploadedFile" /><br>
+    <input type="file" name="uploadedFile" /><br>
+    <input type="file" name="uploadedFile" /><br>
+    <input type="submit" value="Загрузить" />
+</form>
+
+<h3>Все файлы</h3>
+@foreach (var f in Model)
+{
+<tr>
+ 
+    <td>
+        <p>@f.Id</p>
+        <p>@f.ProductId</p>
+        <p><img src="@Url.Content(f.Path)"></p>
+    </td>
+
+    <td>
+        <form asp-controller="FileModel" asp-action="DeleteFile" method="post" asp-route-id="@f.Id">
+            <input type="submit" value="Удалить" class="btn btn-outline-primary" />
+        </form>
+    </td>
+</tr>
+}
+<script>
+
+    document.getElementById("uploadbutton").
+        addEventListener("change", function () {
+            var button = document.createElement('input');
+            button.type = 'file';
+            button.id = 'uploadbutton';
+            button.name = 'uploadedFile';
+            
+            var container = document.getElementById('forma');
+            //container.innerHTML += "document.getElementById('uploadbutton').textContent"
+            container.appendChild(button);
+        }, false);
+
+</script>

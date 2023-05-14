@@ -1,0 +1,197 @@
+﻿
+@model IEnumerable<ClothesShopDiplom.Models.History>
+@{ ViewBag.Title = "Корзина"; }
+<style>
+    .button-28 {
+        appearance: none;
+        background-color: transparent;
+        border: 2px solid #1A1A1A;
+        border-radius: 15px;
+        box-sizing: border-box;
+        color: #000000;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0;
+        min-height: 60px;
+        min-width: 0;
+        outline: none;
+        text-align: center;
+        text-decoration: none;
+        transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        width: 100%;
+        will-change: transform;
+    }
+        .button-28:disabled {
+            pointer-events: none;
+        }
+
+        .button-28:hover {
+            color: #fff;
+            background-color: #1A1A1A;
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+        }
+
+        .button-28:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+</style>
+<link rel="stylesheet" href="~/css/MyStyle.css" />
+<form asp-controller="filemodel">
+    <div class="container">
+        <div class="row m-0 p-0 justify-content-center">
+            <div style="margin-top:3vh" class=" mb-3 pl-0 col-12 justify-content-center">
+                <h2 style="margin-top:10vh" class="heading-section mb-5 ">Корзина</h2>
+                <table width="100%" style="border:none; border-width: 0px; border-color:transparent; border-spacing: 100px;">
+                    @{ int cikl = 0;
+                        double totalprice = 0.0;
+                        int count = 0;}
+                    @foreach (var item in Model)
+                    {
+                        cikl = 1;
+                        if (cikl == 1)
+                        {
+
+                            <tr>
+                                <td scope="col" class="col-1 p-0">
+                                    <a asp-action="Details" asp-controller="FileModel" asp-route-id="@item.Cart.ProductId"><img class="bd-placeholder-img card-img"  style="width: 20vh; min-height: 20vh;"src="@Url.Content(item.FileModel.Path)" /></a>
+                                
+                                </td>
+
+                                <td style="vertical-align:top" scope="col" class="col-11 p-1"><h3> @Html.DisplayFor(modelItem => item.Cart.Product.ProductName)</h3><br />
+                                <p style="font-size:2vh" class="price">@Html.DisplayFor(modelItem => item.Cart.Product.Price)</p>
+                                <p style="font-size:2vh">Размер: @item.Cart.Size</p>
+                                <label>Количество:</label>
+                                 <input asp-action="Cart" asp-route-id="@item.Cart.Id" asp-route-act="dec" method="post" type="submit" value="-" style="width:20px; min-height:20px;  border: 1px solid #1A1A1A;" class="button-28 m-0 p-0" />
+
+                                    @item.Cart.ProductAmount
+
+                                    <input asp-action="Cart" asp-route-id="@item.Cart.Id" asp-route-act="inc" method="post" type="submit" value="+"  style="width:20px; min-height:20px;  border: 1px solid #1A1A1A;" class="button-28 m-0 p-0" /><br />
+                                  <button asp-action="DeleteFromCart" asp-route-id="@item.Cart.Id" method="post" class="btn btn-outline-danger" type="submit">
+                                        Удалить
+                                      
+                                    </button>
+                                </td>
+
+                                @*<td>@item.Cart.Size</td>
+                                <td>
+
+                                    <input asp-action="Cart" asp-route-id="@item.Cart.Id" asp-route-act="dec" method="post" type="submit" value="-" width="8" height="8" style="font-size:10px" class="btn btn-outline-info mr-2" />
+
+                                    @item.Cart.ProductAmount
+
+                                    <input asp-action="Cart" asp-route-id="@item.Cart.Id" asp-route-act="inc" method="post" type="submit" value="+" width="8" height="8" style="font-size:10px" class="btn btn-outline-info ml-2" />
+
+
+                                </td>
+                         
+                                <td>
+
+                                    <button asp-action="DeleteFromCart" asp-route-id="@item.Cart.Id" method="post" class="btn btn-outline-danger" type="submit">
+                                        Удалить
+                            
+                                    </button>
+                                    
+
+                                </td>*@
+
+                                @{totalprice += item.Cart.Product.Price * item.Cart.ProductAmount;
+                                    count += item.Cart.ProductAmount;}
+                            </tr>
+                             <tr style="height:1vh;"></tr>
+                            <tr style="height:1vh; border-top:solid; border-width:1px; border-color: #d8d8d8;"></tr>
+                                        }
+                                    }
+
+                </table>
+                <p style="color:red">@ViewBag.CountError</p>
+                <p><b>Итого:</b> количество товара <b>@count</b> , на сумму: <b class="price">@totalprice</b>  </p>
+                @if (cikl == 1)
+                {
+                    <input asp-action="ConfirmOrder" method="get" type="submit" value="К оформлению" class="button-28" />}
+            </div>
+        </div>
+    </div>
+
+</form>
+    @*<form asp-controller="filemodel">
+        <table class="table">
+            @{ int cikl = 0;
+                double totalprice = 0.0; }
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Товар</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Размер</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    cikl = 1;
+                    if (cikl == 1)
+                    {
+
+                        <tr>
+                            <td>
+                                <a asp-action="Details" asp-controller="FileModel" asp-route-id="@item.Cart.ProductId"><img class="bd-placeholder-img card-img" style="width: 100%; min-height: 100%;" src="@Url.Content(item.FileModel.Path)" /></a>
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Cart.Product.ProductName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Cart.Product.Price)</td>
+
+                            <td>@item.Cart.Size</td>
+                            <td>
+
+                                <input asp-action="Cart" asp-route-id="@item.Cart.Id" asp-route-act="dec" method="post" type="submit" value="-" width="8" height="8" style="font-size:10px" class="btn btn-outline-info mr-2" />
+
+                                @item.Cart.ProductAmount
+
+                                <input asp-action="Cart" asp-route-id="@item.Cart.Id" asp-route-act="inc" method="post" type="submit" value="+" width="8" height="8" style="font-size:10px" class="btn btn-outline-info ml-2" />
+
+
+                            </td>
+                         
+                            <td>
+
+                                <button asp-action="DeleteFromCart" asp-route-id="@item.Cart.Id" method="post" class="btn btn-outline-danger" type="submit">
+                                    Удалить
+                                </button>
+
+                            </td>
+
+                            @{totalprice += item.Cart.Product.Price * item.Cart.ProductAmount; }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <p style="color:red">@ViewBag.CountError</p>
+        <p>Итог: @totalprice</p>
+        @if (cikl == 1)
+        {
+            <input asp-action="ConfirmOrder" method="get" type="submit" value="К оформлению" class="btn btn-outline-primary" />}
+
+    </form>*@
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        $('.price').each(function () {
+            let ammount = $(this);
+            let value = Number(ammount.text());
+            ammount.text('Цена: '+ value.toLocaleString() + ' Р');
+        });
+        $('.price1').each(function () {
+            let ammount = $(this);
+            let value = Number(ammount.text());
+            ammount.text(  value.toLocaleString() + ' Р');
+        });
+    });
+
+</script>

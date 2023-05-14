@@ -1,0 +1,58 @@
+﻿@model ClothesShopDiplom.Models.Employee
+
+<h2>Редактирование пользователя</h2>
+<form asp-action="edit" asp-controller="employee" asp-route-id="@Model.Id">
+    <div class="form-group">
+        <label asp-for="Surname" class="control-label"></label>
+        <input placeholder="Иванов" asp- type="text" asp-for="Surname" class="form-control" />
+        <span style="color:red" asp-validation-for="Surname"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input placeholder="Иван" type="text" asp-for="Name" class="form-control" />
+        <span style="color:red" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Patronymic" class="control-label"></label>
+        <input type="text" asp-for="Patronymic" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input type="text" asp-for="Email" class="form-control" />
+        <span style="color:red" asp-validation-for="Email"></span>
+        <span style="color:red">@ViewBag.EmailError</span>
+    </div>
+
+    @* <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label">Телефон</label>
+            <input type="text" asp-for="PhoneNumber" class="form-control" />
+        </div>*@
+
+    <div class="form-group">
+        <label asp-for="Login" class="control-label"></label>
+        <input type="text" asp-for="Login" class="form-control" />
+        <span style="color:red" asp-validation-for="Login"></span>
+        <span style="color:red">@ViewBag.LoginError</span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Login" class="control-label"></label>
+        <input type="text" asp-for="Login" class="form-control" value="@ViewBag.lol" />
+    </div>
+
+
+
+    <label asp-for="RoleId" class="control-label"></label><br />
+    <select asp-for="RoleId"
+            asp-items="@(new SelectList(Model.RolesList, nameof(Role.Id), nameof(Role.RoleName)))">
+    </select>
+    <p>
+        <input type="submit" value="Сохранить" />
+    </p>
+    <div hidden="hidden" class="form-group">
+        <label asp-for="Password" class="control-label">Пароль</label>
+        <input type="text" asp-for="Password" class="form-control" />
+    </div>
+</form>

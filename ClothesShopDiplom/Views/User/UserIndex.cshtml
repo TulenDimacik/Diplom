@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ClothesShopDiplom.Models.User>
+@{ ViewBag.Title = "Users"; }
+<table class="table">
+    <tr><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>Email</td>@*<td>Телефон</td>*@<td>Логин</td>@*<td>Пароль</td>*@<td>Роль</td></tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.Surname</td>
+        <td>@item.Name</td>
+        <td>@item.Patronymic</td>
+        <td>@item.Email</td>
+        @*<td>@item.PhoneNumber</td>*@
+        <td>@item.Login</td>
+        <td>@item.Password</td>
+        <td>
+            <a asp-action="Edit" asp-controller="User" asp-route-id="@item.Id">Изменить</a>
+        </td>
+    </tr>
+}
+</table>

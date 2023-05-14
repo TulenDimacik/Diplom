@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ClothesShopDiplom.Models.ProductSize>
+@{ ViewBag.Title = "Размеры товаров"; }
+<a asp-action="ProductSizeCreate" asp-controller="product">Добавить </a>
+<table class="table">
+    <tr><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>Email</td>@*<td>Телефон</td>*@<td>Логин</td>@*<td>Пароль</td>*@<td>Роль</td></tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Id</td>
+    <td>@Html.DisplayFor(modelItem => item.Product.ProductName)</td>
+    <td>@Html.DisplayFor(modelItem => item.Size.SizeName)</td>
+
+    <td>
+        <a asp-action="Edit" asp-controller="employee" asp-route-id="@item.Id">Изменить</a>
+    </td>
+    <td><form asp-controller="employee" asp-action="Delete" method="post" asp-route-id="@item.Id"><input type="submit" value="Удалить" class="btn btn-outline-primary" /></form> </td>
+</tr>
+}
+</table>

@@ -1,0 +1,61 @@
+﻿
+
+@font-face {
+    font-family: SF;
+    src: url(../Fonts/SFProText-Regular.ttf) format('opentype');
+}
+
+@font-face {
+    font-family: Highfont;
+    src: url(../Fonts/HighlinerRegular.otf) format("opentype");
+}
+
+@font-face {
+    font-family: Tablon;
+    src: url(../Fonts/Tablon-Medium.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: Neue;
+    src: url(../Fonts/Neue_soviet.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: Bebas;
+    src: url(../Fonts/BebasNeue-Regular.ttf) format('truetype');
+}
+
+:root {
+    --index: calc(1vw + 1vh);
+}
+
+html, body {
+    font-family: SF;
+}
+
+
+.highText {
+    font-family: Highfont;
+    text-transform: uppercase;
+    font-size: calc(var(--index)*3 );
+    margin: 0px 0px -40px 0px;
+    /*  letter-spacing: calc(var(--index)*10 );*/
+}
+
+.titletext1 {
+    font-family: Tablon;
+    text-transform: uppercase;
+    /*  letter-spacing: calc(var(--index)*10 );*/
+}
+
+.titletext2 {
+    font-family: Neue;
+    text-transform: uppercase;
+    /*  letter-spacing: calc(var(--index)*10 );*/
+}
+
+.titletext3 {
+    font-family: Bebas;
+    text-transform: uppercase;
+    /*  letter-spacing: calc(var(--index)*10 );*/
+}
